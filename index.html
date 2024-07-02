@@ -1,49 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lux Intensity Range Input</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-            margin: 0;
-        }
-        .container {
-            text-align: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .lux-value {
-            margin-top: 10px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-    </style>
+    <title>Slider Data</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Lux Intensity Range Input</h1>
-        <label for="luxRange">Intensity (lux):</label><br>
-        <input type="range" id="luxRange" name="luxRange" min="0" max="65536" value="0" oninput="updateLuxValue(this.value)">
-        <div class="lux-value" id="luxValue">0 lux</div>
-    </div>
+    <h1>Slider Control</h1>
+    <input type="range" id="slider" min="0" max="100" value="50" oninput="sendData()">
     <script>
-        const micropythonIp = 'http://10.10.20.124';  // Replace with the IP address of your MicroPython device
-        
-        function updateLuxValue(value) {
-            document.getElementById('luxValue').textContent = value + ' lux';
-            fetch(micropythonIp + '/set_brightness?intensity=' + value)
-                .then(response => response.text())
-                .then(data => console.log(data))
-                .catch(error => console.error('Error:', error));
+        function sendData() {
+            const sliderValue = document.getElementById('slider').value;
+            fetch('http://<your-pico-ip>/data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ value: sliderValue }),
+            });
         }
     </script>
 </body>

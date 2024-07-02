@@ -60,7 +60,7 @@ try:
         print('Client connected from', client_addr)
         request = client_socket.recv(1024)
         response = handle_request(request)
-        client_socket.sendall('HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\n' + response)
+        client_socket.sendall('HTTP/1.1 200 OK\r\nAccess-Control-Allow-Origin: *\r\nContent-Type: text/plain\r\n\r\n' + response)
         client_socket.close()
 except KeyboardInterrupt:
     pass

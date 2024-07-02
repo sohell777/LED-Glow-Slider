@@ -9,7 +9,7 @@
     <script>
         function sendData() {
             const sliderValue = document.getElementById('slider').value;
-            fetch('http://<your-pico-ip>/data', {
+            fetch('http://10.10.20.124/data', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

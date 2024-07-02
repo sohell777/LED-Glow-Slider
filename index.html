@@ -3,14 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Button Control</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remote Button Control</title>
     <style>
         body {
@@ -63,58 +55,6 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ button: buttonNum, status: status })
-            });
-        }
-    </script>
-</body>
-</html>
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-            margin: 0;
-        }
-        .container {
-            text-align: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Button Control</h1>
-        <button class="button" id="button1" onclick="sendStatus(1, 'ON')">Button 1 ON</button>
-        <button class="button" id="button2" onclick="sendStatus(1, 'OFF')">Button 1 OFF</button>
-        <button class="button" id="button3" onclick="sendStatus(2, 'ON')">Button 2 ON</button>
-        <button class="button" id="button4" onclick="sendStatus(2, 'OFF')">Button 2 OFF</button>
-    </div>
-    <script>
-        function sendStatus(button, status) {
-            fetch('/api/set_button_status', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ button: button, status: status })
-            }).then(response => {
-                if (response.ok) {
-                    console.log('Status sent successfully');
-                } else {
-                    console.error('Failed to send status');
-                }
-            }).catch(error => {
-                console.error('Error:', error);
             });
         }
     </script>

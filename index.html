@@ -36,9 +36,14 @@
         <div class="lux-value" id="luxValue">0 lux</div>
     </div>
     <script>
+        const micropythonIp = 'http://<MICROPYTHON_DEVICE_IP>';  // Replace with the IP address of your MicroPython device
+        
         function updateLuxValue(value) {
             document.getElementById('luxValue').textContent = value + ' lux';
-            fetch('http://10.10.20.124/set_brightness?intensity=' + value);
+            fetch(micropythonIp + '/set_brightness?intensity=' + value)
+                .then(response => response.text())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
         }
     </script>
 </body>

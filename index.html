@@ -38,7 +38,7 @@
     <script>
         function updateLuxValue(value) {
             document.getElementById('luxValue').textContent = value + ' lux';
-            fetch('/set_brightness?intensity=' + value);
+            fetch('http://10.10.20.124/set_brightness?intensity=' + value);
         }
     </script>
 </body>

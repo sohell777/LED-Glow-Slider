@@ -6,7 +6,69 @@
     <title>Button Control</title>
     <style>
         body {
+            font-family: Arial, sans-serif;<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Button Control</title>
+    <style>
+        body {
             font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Remote Button Control</h1>
+        <button id="button1" class="button" onclick="toggleButton(1)">Button 1</button>
+        <button id="button2" class="button" onclick="toggleButton(2)">Button 2</button>
+    </div>
+    <script>
+        function toggleButton(buttonNum) {
+            var button = document.getElementById('button' + buttonNum);
+            var status = button.textContent === 'ON' ? 'OFF' : 'ON';
+            button.textContent = status;
+
+            // Send button status to server (optional)
+            fetch('/set_button_status', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ button: buttonNum, status: status })
+            });
+        }
+    </script>
+</body>
+</html>
+
             display: flex;
             justify-content: center;
             align-items: center;
